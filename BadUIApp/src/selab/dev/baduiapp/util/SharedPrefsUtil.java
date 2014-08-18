@@ -15,6 +15,18 @@ public class SharedPrefsUtil {
 		editor.putString(key, value);
 		editor.commit();
 	}
+	
+	public static void putSharedPreference(String key, int value)  {
+		SharedPreferences prefs = 
+				PreferenceManager.getDefaultSharedPreferences(BadUIApp.getContext());
+
+		SharedPreferences.Editor editor = prefs.edit();
+
+		editor.putInt(key, value);
+		editor.commit();
+	}
+	
+	
 
 	public static String getSharedPreferenceStr(String key) {
 		SharedPreferences prefs = 

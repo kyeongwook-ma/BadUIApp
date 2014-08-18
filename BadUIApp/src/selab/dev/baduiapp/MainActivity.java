@@ -2,6 +2,7 @@ package selab.dev.baduiapp;
 
 import selab.dev.baduiapp.db.DBHelper;
 import selab.dev.baduiapp.db.SeqDBscheme;
+import selab.dev.baduiapp.util.SeqHolder;
 import selab.dev.baduiapp.util.SharedPrefsUtil;
 import android.content.ContentValues;
 import android.media.MediaPlayer;
@@ -24,10 +25,18 @@ public class MainActivity extends ActionBarActivity implements OnSeekBarChangeLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		initView();
 		startRecordSeqNum();
+
+		
 		
 	}
+	
+	@Override
+	protected void onDestroy() {
+		SeqHolder.saveCurrentSeq();
+	}
+	
 	
 	private void initView() {
 		
@@ -42,8 +51,7 @@ public class MainActivity extends ActionBarActivity implements OnSeekBarChangeLi
 	}
 	
 	private void startRecordSeqNum() {
-		int seq = SharedPrefsUtil.getSharedPreferenceInt("seq");
-		seq += 1;
+		int seq = SeqHolder.getCurrentSeq();
 		
 		ContentValues cv = new ContentValues();
 		cv.put("_id", seq);
@@ -59,18 +67,28 @@ public class MainActivity extends ActionBarActivity implements OnSeekBarChangeLi
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
+		
+		switch(seekBar.getId()) {
+		case R.id.sb_adult :
+			tvAdultCount.setText(progress / 100 + " Έν ");
+			break;
 			
+		case R.id.sb_child :
+			tvChildCount.setText(progress / 100 + " Έν ");
+			break;
+		
+		}
+		
+		
 	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 		
 	}
 
