@@ -1,34 +1,78 @@
 package selab.dev.baduiapp;
 
-import android.support.v7.app.ActionBarActivity;
+import selab.dev.baduiapp.db.DBHelper;
+import selab.dev.baduiapp.db.SeqDBscheme;
+import selab.dev.baduiapp.util.SharedPrefsUtil;
+import android.content.ContentValues;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.view.DragEvent;
+import android.view.View;
+import android.view.View.OnDragListener;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements OnSeekBarChangeListener, OnSeekCompleteListener{
 
+	private TextView tvChildCount, tvAdultCount;
+	private SeekBar sbChild, sbAdult;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		startRecordSeqNum();
+		
+	}
+	
+	private void initView() {
+		
+		tvAdultCount = (TextView)findViewById(R.id.tv_adult_count);
+		tvChildCount = (TextView)findViewById(R.id.tv_child_count);
+		sbChild = (SeekBar)findViewById(R.id.sb_child);
+		sbAdult = (SeekBar)findViewById(R.id.sb_adult);
+		
+		sbChild.setOnSeekBarChangeListener(this);
+		sbAdult.setOnSeekBarChangeListener(this);
+		
+	}
+	
+	private void startRecordSeqNum() {
+		int seq = SharedPrefsUtil.getSharedPreferenceInt("seq");
+		seq += 1;
+		
+		ContentValues cv = new ContentValues();
+		cv.put("_id", seq);
+		DBHelper.getInstance().insert(SeqDBscheme.TABLE_NAME, cv);
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	public void onSeekComplete(MediaPlayer mp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+			
 	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
