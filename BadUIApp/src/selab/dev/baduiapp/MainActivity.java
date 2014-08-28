@@ -3,23 +3,23 @@ package selab.dev.baduiapp;
 import selab.dev.baduiapp.db.DBHelper;
 import selab.dev.baduiapp.db.SeqDBscheme;
 import selab.dev.baduiapp.util.SeqHolder;
-import selab.dev.baduiapp.util.SharedPrefsUtil;
 import android.content.ContentValues;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.DragEvent;
 import android.view.View;
-import android.view.View.OnDragListener;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity implements OnSeekBarChangeListener, OnSeekCompleteListener{
-
-	private TextView tvChildCount, tvAdultCount;
-	private SeekBar sbChild, sbAdult;
+public class MainActivity extends ActionBarActivity implements OnClickListener {
+	
+	private Button fakeChild, fakeAdult;
+	private LinearLayout llChild, llAdult;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +40,10 @@ public class MainActivity extends ActionBarActivity implements OnSeekBarChangeLi
 	
 	private void initView() {
 		
-		tvAdultCount = (TextView)findViewById(R.id.tv_adult_count);
-		tvChildCount = (TextView)findViewById(R.id.tv_child_count);
-		sbChild = (SeekBar)findViewById(R.id.sb_child);
-		sbAdult = (SeekBar)findViewById(R.id.sb_adult);
-		
-		sbChild.setOnSeekBarChangeListener(this);
-		sbAdult.setOnSeekBarChangeListener(this);
+		fakeAdult = (Button)findViewById(R.id.btn_fake_adult);
+		fakeChild = (Button)findViewById(R.id.btn_fake_child);
+		llAdult = (LinearLayout)findViewById(R.id.ll_adult);
+		llChild = (LinearLayout)findViewById(R.id.ll_child);
 		
 	}
 	
@@ -59,36 +56,8 @@ public class MainActivity extends ActionBarActivity implements OnSeekBarChangeLi
 	}
 
 	@Override
-	public void onSeekComplete(MediaPlayer mp) {
+	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
-		
-		switch(seekBar.getId()) {
-		case R.id.sb_adult :
-			tvAdultCount.setText(progress / 100 + " Έν ");
-			break;
-			
-		case R.id.sb_child :
-			tvChildCount.setText(progress / 100 + " Έν ");
-			break;
-		
-		}
-		
-		
-	}
-
-	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
-		
-	}
-
-	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {
 		
 	}
 
