@@ -67,6 +67,13 @@
                     android:id="@+id/btn_fake_adult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:id="@+id/spin_adult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -95,6 +102,13 @@
                     android:id="@+id/btn_fake_child"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
+
+                <Spinner
+                    android:id="@+id/spin_child"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
             </LinearLayout>
         </LinearLayout>
 

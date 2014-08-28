@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class SharedPrefsUtil {
+	
 	public static void putSharedPreference(String key, String value)  {
 		SharedPreferences prefs = 
 				PreferenceManager.getDefaultSharedPreferences(BadUIApp.getContext());
