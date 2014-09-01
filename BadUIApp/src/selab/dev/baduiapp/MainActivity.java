@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-public class MainActivity extends ActionBarActivity implements OnClickListener {
+public class MainActivity extends BadUICheckActivity implements OnClickListener {
 
 	private Button fakeChild, fakeAdult;
 	private LinearLayout llChild, llAdult;
@@ -29,17 +29,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initView();
-		startRecordSeqNum();
-
-
 
 	}
-
-	@Override
-	protected void onDestroy() {
-		SeqHolder.saveCurrentSeq();
-	}
-
 
 	private void initView() {
 
@@ -95,14 +86,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		}
 
 		return seqList;
-	}
-
-	private void startRecordSeqNum() {
-		int seq = SeqHolder.getCurrentSeq();
-
-		ContentValues cv = new ContentValues();
-		cv.put("_id", seq);
-		DBHelper.getInstance().insert(SeqDBscheme.TABLE_NAME, cv);
 	}
 
 	@Override
