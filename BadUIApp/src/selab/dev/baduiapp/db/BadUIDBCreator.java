@@ -7,6 +7,7 @@ public class BadUIDBCreator implements IDBCreator {
 		
 		final String SEQ_TABLE_CREATE_STMT = "CREATE TABLE "
 				+ SeqDBscheme.TABLE_NAME + " ("
+				+ SeqDBscheme.COLUMN_TIME + " INTEGER, "
 				+ SeqDBscheme.COLUMN_ID + " INTEGER NOT NULL PRIMARY KEY);";
 		
 		final String BM_TABLE_CREATE_STMT = "CREATE TABLE "

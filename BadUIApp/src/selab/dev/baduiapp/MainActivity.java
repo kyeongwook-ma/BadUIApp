@@ -3,12 +3,7 @@ package selab.dev.baduiapp;
 import java.util.ArrayList;
 import java.util.List;
 
-import selab.dev.baduiapp.db.DBHelper;
-import selab.dev.baduiapp.db.SeqDBscheme;
-import selab.dev.baduiapp.util.SeqHolder;
-import android.content.ContentValues;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
