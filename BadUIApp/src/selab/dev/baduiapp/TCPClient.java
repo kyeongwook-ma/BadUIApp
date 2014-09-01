@@ -15,9 +15,9 @@ public class TCPClient implements Runnable{
 	private static final String serverIP="192.168.34.52";
 	private static final int serverPort = 10200;
 	private String msg;
-	public TCPClient(String msg){
+	public TCPClient(String fileName){
 		super();
-		this.msg = msg;
+		this.msg = fileName;
 	}
 	@Override
 	public void run(){
