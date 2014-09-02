@@ -17,6 +17,7 @@ public class BadUICheckActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		startRecordSeqNum();
 		timer = new ActivityTimer();
+		timer.run();
 	}
 
 	@Override
@@ -35,10 +36,9 @@ public class BadUICheckActivity extends Activity {
 	private void recordElapsedTime(int seq, int elapsedTime) {
 		
 		/* INSERT INTO SeqTable(times) VALUES (elapsedTime) WHERE _id=seq */
-		final String sql = "INSERT INTO " + SeqDBscheme.TABLE_NAME + " (" +
-				SeqDBscheme.COLUMN_TIME + " )" +
-				" VALUES (" + String.valueOf(elapsedTime) + " )" +
-				" WHERE " + SeqDBscheme.COLUMN_ID + "=" + String.valueOf(seq);
+		final String sql = "UPDATE " + SeqDBscheme.TABLE_NAME + 
+				" SET " + SeqDBscheme.COLUMN_TIME + " = " + String.valueOf(elapsedTime) +
+				" WHERE " + SeqDBscheme.COLUMN_ID + "=" + String.valueOf(seq) + " ;";
 		
 		DBHelper.getInstance().exec(sql);
 	}

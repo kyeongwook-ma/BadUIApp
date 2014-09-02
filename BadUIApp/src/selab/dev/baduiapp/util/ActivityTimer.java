@@ -1,8 +1,7 @@
 package selab.dev.baduiapp.util;
 
-import java.util.TimerTask;
 
-public class ActivityTimer extends TimerTask {
+public class ActivityTimer extends Thread {
 
 	private int times = 0;
 	private boolean isRunning = false;
@@ -21,6 +20,10 @@ public class ActivityTimer extends TimerTask {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void startTimer() {
+		isRunning = true;
 	}
 	
 	public void stopTimer() {
