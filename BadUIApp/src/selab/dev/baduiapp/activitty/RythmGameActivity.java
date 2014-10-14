@@ -21,9 +21,9 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        initView();
         super.onCreate(savedInstanceState);
 
-        initView();
     }
 
     public void setDestination() {
