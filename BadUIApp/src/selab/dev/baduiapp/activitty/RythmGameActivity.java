@@ -1,26 +1,42 @@
 package selab.dev.baduiapp.activitty;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import selab.dev.baduiapp.R;
 
 /**
  * Created by makyungjae on 2014. 10. 14..
  */
-public class RythmGameActivity extends Activity implements View.OnClickListener {
+public class RythmGameActivity extends BaseActivity implements View.OnClickListener {
 
-    private Button fakeSpace, A,B,C,D;
+    private Button fakeSpace, B,C;
     private TextView tvInstruction;
+    private int touchCount = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         initView();
+    }
+
+    public void setDestination() {
+        missionMonitor.setDestination(this, MovingBallActivity.class);
+    }
+
+    @Override
+    protected List<Object> makeExpectValue() {
+        List<Object> expectedValue = new ArrayList<Object>();
+        expectedValue.add(fakeSpace.getText().toString());
+        expectedValue.add(B.getText().toString());
+        expectedValue.add(C.getText().toString());
+        return expectedValue;
     }
 
     private void initView() {
@@ -42,18 +58,26 @@ public class RythmGameActivity extends Activity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.fake_space:
 
-                break;
+        if(touchCount % 5 == 0) {
 
-            case R.id.fake_b:
+            switch (view.getId()) {
+                case R.id.fake_space:
+                    missionMonitor.addValue(fakeSpace.getText().toString());
+                    break;
 
-                break;
-            case R.id.fake_c:
+                case R.id.fake_b:
+                    missionMonitor.addValue(B.getText().toString());
+                    break;
+                case R.id.fake_c:
+                    missionMonitor.addValue(C.getText().toString());
+                    break;
 
-                break;
-
+            }
+        } else {
+            ++touchCount;
         }
+
+
     }
 }
