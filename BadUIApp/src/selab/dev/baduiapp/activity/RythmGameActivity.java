@@ -21,7 +21,6 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        initView();
         super.onCreate(savedInstanceState);
 
     }
@@ -39,7 +38,8 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
         return expectedValue;
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         setContentView(R.layout.rythm_acrivity);
 
         fakeSpace = (Button)findViewById(R.id.fake_space);

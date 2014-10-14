@@ -15,6 +15,7 @@ public abstract class BaseActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        initView();
         super.onCreate(savedInstanceState);
 
         expectedValue = makeExpectValue();
@@ -22,6 +23,8 @@ public abstract class BaseActivity extends Activity {
         setDestination();
 
     }
+
+    protected abstract void initView();
 
     @Override
     protected void onDestroy() {

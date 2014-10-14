@@ -21,10 +21,10 @@ public class MovingBallActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         setContentView(R.layout.moving_activity);
 
         ivBall = (ImageView)findViewById(R.id.iv_ball);
