@@ -32,7 +32,12 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
         pome.setOnClickListener(this);
 
         meat = (ImageView)findViewById(R.id.iv_feed);
+        meat.setTag("Meat");
         meat.setOnClickListener(this);
+        meat.setOnLongClickListener(new DragClickListener());
+
+        button = (ImageView)findViewById(R.id.iv_push);
+        button.setOnClickListener(this);
 
     }
 

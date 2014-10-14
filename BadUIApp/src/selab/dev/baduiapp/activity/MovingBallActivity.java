@@ -1,9 +1,6 @@
 package selab.dev.baduiapp.activity;
 
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -32,34 +29,10 @@ public class MovingBallActivity extends BaseActivity {
         ivBall.setScaleX(0.5f);
         ivBall.setScaleY(0.5f);
 
-        MyClickListener cl = new MyClickListener();
-        ivBall.setOnLongClickListener(cl);
+        ivBall.setOnLongClickListener(new DragClickListener());
 
     }
-    private final class MyClickListener implements View.OnLongClickListener {
 
-        // called when the item is long-clicked
-        @Override
-        public boolean onLongClick(View view) {
-
-            // create it from the object's tag
-            ClipData.Item item = new ClipData.Item((CharSequence)view.getTag());
-
-            String[] mimeTypes = { ClipDescription.MIMETYPE_TEXT_PLAIN };
-            ClipData data = new ClipData(view.getTag().toString(), mimeTypes, item);
-            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-
-            view.startDrag( data, //data to be dragged
-                    shadowBuilder, //drag shadow
-                    view, //local data about the drag and drop operation
-                    0   //no needed flags
-            );
-
-
-            view.setVisibility(View.INVISIBLE);
-            return true;
-        }
-    }
     /*
     class MyDragListener implements View.OnDragListener {
        // Drawable normalShape = getResources().getDrawable(R.drawable.normal_shape);

@@ -17,7 +17,6 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     private Button fakeSpace, B,C;
     private TextView tvInstruction;
-    private int touchCount = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

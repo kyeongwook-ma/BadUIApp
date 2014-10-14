@@ -35,26 +35,32 @@
             android:id="@+id/fake_space"
             android:layout_weight="0.6" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.4">
-
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="C"
-                android:id="@+id/fake_c" />
-
-        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="C"
+            android:id="@+id/fake_c"
+            android:layout_weight="0.3" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:text="B"
             android:id="@+id/fake_b"
+            android:layout_weight="0.7" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:id="@+id/fake_a"
+            android:layout_weight="0.7" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D"
+            android:id="@+id/fake_d"
             android:layout_weight="0.7" />
 
     </LinearLayout>
