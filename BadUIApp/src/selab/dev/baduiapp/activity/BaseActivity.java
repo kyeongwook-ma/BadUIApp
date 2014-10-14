@@ -1,4 +1,4 @@
-package selab.dev.baduiapp.activitty;
+package selab.dev.baduiapp.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -19,8 +19,14 @@ public abstract class BaseActivity extends Activity {
 
         expectedValue = makeExpectValue();
         missionMonitor = new MissionMonitor(expectedValue);
-
         setDestination();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        missionMonitor.destoryMonitor();
     }
 
     protected abstract void setDestination();

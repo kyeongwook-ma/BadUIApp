@@ -1,4 +1,4 @@
-package selab.dev.baduiapp.activitty;
+package selab.dev.baduiapp.activity;
 
 import android.app.Activity;
 import android.content.ContentValues;

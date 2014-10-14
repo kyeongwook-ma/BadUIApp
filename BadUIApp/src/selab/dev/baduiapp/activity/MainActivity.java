@@ -1,4 +1,4 @@
-package selab.dev.baduiapp.activitty;
+package selab.dev.baduiapp.activity;
 
 import android.os.Bundle;
 import android.view.View;

@@ -1,4 +1,4 @@
-package selab.dev.baduiapp.activitty;
+package selab.dev.baduiapp.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -59,23 +59,18 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
-        if(touchCount % 5 == 0) {
+        switch (view.getId()) {
+            case R.id.fake_space:
+                missionMonitor.addValue(fakeSpace.getText().toString());
+                break;
 
-            switch (view.getId()) {
-                case R.id.fake_space:
-                    missionMonitor.addValue(fakeSpace.getText().toString());
-                    break;
+            case R.id.fake_b:
+                missionMonitor.addValue(B.getText().toString());
+                break;
+            case R.id.fake_c:
+                missionMonitor.addValue(C.getText().toString());
+                break;
 
-                case R.id.fake_b:
-                    missionMonitor.addValue(B.getText().toString());
-                    break;
-                case R.id.fake_c:
-                    missionMonitor.addValue(C.getText().toString());
-                    break;
-
-            }
-        } else {
-            ++touchCount;
         }
 
 
