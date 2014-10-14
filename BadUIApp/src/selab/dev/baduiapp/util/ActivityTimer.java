@@ -1,6 +1,8 @@
 package selab.dev.baduiapp.util;
 
 
+import android.util.Log;
+
 public class ActivityTimer extends Thread {
 
 	private int times = 0;
@@ -16,7 +18,8 @@ public class ActivityTimer extends Thread {
 			++times;
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+                Log.i("time", String.valueOf(times));
+            } catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}

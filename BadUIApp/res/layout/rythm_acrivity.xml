@@ -9,27 +9,37 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.2">
+        android:layout_weight="0.15"
+        android:layout_gravity="center_vertical"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="따라치시오"
-            android:id="@+id/textView" />
+            android:id="@+id/tv_inst"
+            android:layout_gravity="center"
+            android:gravity="center" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1"
-        android:layout_weight="0.8">
+        android:layout_weight="0.85">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="C"
+            android:id="@+id/fake_c"
+            android:layout_weight="0.7" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.3">
+            android:layout_weight="0.2">
 
 
             <Button
@@ -40,36 +50,13 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <Button
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.7">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="C"
-                android:id="@+id/fake_c" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="B"
-                android:id="@+id/fake_b" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="D"
-                android:id="@+id/fake_d" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A"
-                android:id="@+id/fake_a" />
-        </LinearLayout>
+            android:text="B"
+            android:id="@+id/fake_b"
+            android:layout_weight="0.7" />
 
     </LinearLayout>
- </LinearLayout>
+
+</LinearLayout>
