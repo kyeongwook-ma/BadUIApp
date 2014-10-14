@@ -1,12 +1,14 @@
-package selab.dev.baduiapp;
+package selab.dev.baduiapp.activitty;
 
+import android.app.Activity;
+import android.content.ContentValues;
+import android.os.Bundle;
+
+import selab.dev.baduiapp.TCPClient;
 import selab.dev.baduiapp.db.DBHelper;
 import selab.dev.baduiapp.db.SeqDBscheme;
 import selab.dev.baduiapp.util.ActivityTimer;
 import selab.dev.baduiapp.util.SeqHolder;
-import android.app.Activity;
-import android.content.ContentValues;
-import android.os.Bundle;
 
 public class BadUICheckActivity extends Activity {
 

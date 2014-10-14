@@ -1,7 +1,4 @@
-package selab.dev.baduiapp;
-
-import java.util.ArrayList;
-import java.util.List;
+package selab.dev.baduiapp.activitty;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import selab.dev.baduiapp.R;
 
 public class MainActivity extends BadUICheckActivity implements OnClickListener {
 
@@ -45,7 +47,7 @@ public class MainActivity extends BadUICheckActivity implements OnClickListener 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v,
 					int pos, long id) {
-				fakeAdult.setText(parent.getItemAtPosition(pos).toString() + "¸í");
+				fakeAdult.setText(parent.getItemAtPosition(pos).toString() + "ï¿½ï¿½");
 			}
 
 			@Override
@@ -61,7 +63,7 @@ public class MainActivity extends BadUICheckActivity implements OnClickListener 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v,
 					int pos, long id) {
-				fakeChild.setText(parent.getItemAtPosition(pos).toString() + "¸í");
+				fakeChild.setText(parent.getItemAtPosition(pos).toString() + "ï¿½ï¿½");
 			}
 
 			@Override
