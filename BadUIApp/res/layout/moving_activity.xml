@@ -6,38 +6,30 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:gravity="center">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/iv_ball"
+            android:src="@drawable/football"
+            android:maxWidth="50dp"
+            android:maxHeight="50dp"
+            android:minHeight="20dp"
+            android:minWidth="20dp"
+            android:scaleType="fitXY"
+            android:layout_above="@+id/iv_spring"
+            android:layout_centerHorizontal="true" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/iv_spring" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="300dp"
+            android:id="@+id/iv_spring"
+            android:src="@drawable/constant"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="false"
-            android:baselineAligned="true">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/iv_ball"
-                android:src="@drawable/football"
-                android:maxWidth="50dp"
-                android:maxHeight="50dp"
-                android:minHeight="20dp"
-                android:minWidth="20dp"
-                android:scaleType="fitXY"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
-        </LinearLayout>
     </RelativeLayout>
+
 </LinearLayout>

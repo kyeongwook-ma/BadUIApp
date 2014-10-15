@@ -2,7 +2,6 @@ package selab.dev.baduiapp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +40,13 @@ public class MissionMonitor {
         @Override
         public void run() {
             while(true) {
-                Log.i("d","d");
-
 
                 if(expectedValue.equals(value)) {
                     from.startActivity(new Intent(from, to));
                     from.finish();
                     initValues();
                     try {
+                        join();
                         break;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -60,7 +58,7 @@ public class MissionMonitor {
 
     public void setDestination(final Activity from, final Class to) {
 
-        MonitorThr monitorThread = new MonitorThr(from, to);
+        monitorThread = new MonitorThr(from, to);
         monitorThread.start();
     }
 

@@ -1,6 +1,9 @@
 package selab.dev.baduiapp.activity;
 
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -31,6 +34,15 @@ public class MovingBallActivity extends BaseActivity {
 
         ivBall.setOnLongClickListener(new DragClickListener());
 
+        final DoubleTabListener doubleTabListener = new DoubleTabListener();
+        final GestureDetector gestureDetector = new GestureDetector(this, doubleTabListener);
+
+        ivBall.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return gestureDetector.onTouchEvent(motionEvent);
+            }
+        });
     }
 
     /*
