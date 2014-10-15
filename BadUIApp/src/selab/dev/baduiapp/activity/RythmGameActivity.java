@@ -17,10 +17,24 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     private Button fakeSpace, B,C;
     private TextView tvInstruction;
+    private final String[] rythmSeq = {"Space", "B", "C", "Space","A","E","A","D", "Space", "Finish"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+    }
+
+    private void giveInst() {
+        for(String seq : rythmSeq) {
+            tvInstruction.setText(seq);
+            try {
+                Thread.sleep(700);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -31,9 +45,11 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected List<Object> makeExpectValue() {
         List<Object> expectedValue = new ArrayList<Object>();
-        expectedValue.add(fakeSpace.getText().toString());
-        expectedValue.add(B.getText().toString());
-        expectedValue.add(C.getText().toString());
+
+        for(String seq : rythmSeq) {
+            expectedValue.add(seq);
+        }
+
         return expectedValue;
     }
 
@@ -52,7 +68,8 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
 
         tvInstruction = (TextView)findViewById(R.id.tv_inst);
-        tvInstruction.setTextSize(40);
+        tvInstruction.setOnClickListener(this);
+
     }
 
     @Override
@@ -70,6 +87,9 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
                 missionMonitor.addValue(C.getText().toString());
                 break;
 
+            case R.id.tv_inst:
+                giveInst();
+                break;
         }
 
 

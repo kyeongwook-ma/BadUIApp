@@ -25,7 +25,8 @@ public class MissionMonitor {
     }
 
     public void destoryMonitor() {
-        monitorThread.interrupt();
+        if(monitorThread != null)
+            monitorThread.interrupt();
     }
 
     public class MonitorThr extends Thread {
@@ -40,6 +41,11 @@ public class MissionMonitor {
         @Override
         public void run() {
             while(true) {
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 if(expectedValue.equals(value)) {
                     from.startActivity(new Intent(from, to));
@@ -57,9 +63,11 @@ public class MissionMonitor {
     }
 
     public void setDestination(final Activity from, final Class to) {
+        if(from != null && to != null) {
+            monitorThread = new MonitorThr(from, to);
+            monitorThread.start();
+        }
 
-        monitorThread = new MonitorThr(from, to);
-        monitorThread.start();
     }
 
     private void initValues() {

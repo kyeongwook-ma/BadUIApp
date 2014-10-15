@@ -9,60 +9,84 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.15"
+        android:layout_weight="0.3"
         android:layout_gravity="center_vertical"
         android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="따라치시오"
+            android:text="Tab It!"
+            android:textColor="#ffffff"
+            android:textSize="40dp"
             android:id="@+id/tv_inst"
             android:layout_gravity="center"
             android:gravity="center" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.85">
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.7"
+        android:weightSum="1">
 
-        <Button
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Space"
-            android:id="@+id/fake_space"
-            android:layout_weight="0.6" />
+            android:layout_weight="0.6">
 
-        <Button
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Space"
+                android:id="@+id/fake_space"
+                android:layout_weight="0.8" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="C"
+                android:id="@+id/fake_c"
+                android:layout_weight="0.6" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="C"
-            android:id="@+id/fake_c"
-            android:layout_weight="0.3" />
+            android:layout_weight="0.4">
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="B"
-            android:id="@+id/fake_b"
-            android:layout_weight="0.7" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="B"
+                android:id="@+id/fake_b"
+                android:layout_weight="0.1" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="A"
-            android:id="@+id/fake_a"
-            android:layout_weight="0.7" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="A"
+                android:id="@+id/fake_a"
+                android:layout_weight="0.1" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D"
-            android:id="@+id/fake_d"
-            android:layout_weight="0.7" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="D"
+                android:id="@+id/fake_d"
+                android:layout_weight="0.1" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="E"
+                android:id="@+id/fake_e"
+                android:layout_weight="0.1" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

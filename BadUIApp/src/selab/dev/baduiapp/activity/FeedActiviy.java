@@ -34,16 +34,17 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
         meat = (ImageView)findViewById(R.id.iv_feed);
         meat.setTag("Meat");
         meat.setOnClickListener(this);
+        meat.setVisibility(View.INVISIBLE);
         meat.setOnLongClickListener(new DragClickListener());
 
-        button = (ImageView)findViewById(R.id.iv_push);
+        button = (ImageView)findViewById(R.id.imageView);
         button.setOnClickListener(this);
 
     }
 
     @Override
     protected void setDestination() {
-
+        missionMonitor.setDestination(null,null);
     }
 
     @Override
@@ -60,7 +61,8 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
             case R.id.iv_feed:
                 break;
 
-            case R.id.iv_push:
+            case R.id.imageView:
+                meat.setVisibility(View.VISIBLE);
                 break;
 
         }

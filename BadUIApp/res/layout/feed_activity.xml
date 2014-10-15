@@ -31,10 +31,31 @@
             android:id="@+id/iv_feed"
             android:src="@drawable/meat2" />
 
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_margin="1dp"
+            android:gravity="center"
+            android:text="Hello"
+            android:textColor="#000000"
+            android:id="@+id/tv_inst" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/iv_push"
-            android:src="@drawable/push" />
-    </LinearLayout>
+            android:id="@+id/imageView"
+            android:src="@drawable/select" />
+    </RelativeLayout>
+
 </LinearLayout>
