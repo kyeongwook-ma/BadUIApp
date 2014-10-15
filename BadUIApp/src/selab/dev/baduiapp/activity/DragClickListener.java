@@ -28,7 +28,6 @@ public class DragClickListener implements View.OnLongClickListener {
         );
 
 
-        view.setVisibility(View.INVISIBLE);
         return true;
     }
 }

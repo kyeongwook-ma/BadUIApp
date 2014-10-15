@@ -1,12 +1,20 @@
 package selab.dev.baduiapp.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import selab.dev.baduiapp.R;
 
@@ -26,25 +34,41 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     }
 
+
     private void giveInst() {
+        final Timer myTimer = new Timer();
+        final Handler handler = new Handler();
+        final Runnable myRunnable = new Runnable() {
 
-        new Thread() {
-            @Override
+            int valIdx = 0;
+            int colors[] = new int[] { Color.CYAN, Color.GREEN, Color.MAGENTA, Color.WHITE, Color.YELLOW };
+
             public void run() {
+                if(valIdx < rythmSeq.length) {
+                    tvInstruction.setText(rythmSeq[valIdx++]);
+                    tvInstruction.setTextColor(colors[new Random().nextInt(colors.length)]);
+                } else if(valIdx == rythmSeq.length) {
+                    startActivity(new Intent(RythmGameActivity.this, FeedActiviy.class));
 
-                for(String seq : rythmSeq) {
-                    tvInstruction.setText(seq);
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    finish();
+                    myTimer.cancel();
+
                 }
             }
-        }.start();
+        };
+
+
+        myTimer.schedule(new TimerTask() {
+            @Override
+            public void run() { handler.post(myRunnable);}
+        }, 1000, 1000);
+
     }
 
-    public void setDestination() {    }
+
+
+
+    public void setDestination() {  missionMonitor.setDestination(this, FeedActiviy.class);  }
 
     @Override
     protected List<Object> makeExpectValue() {
