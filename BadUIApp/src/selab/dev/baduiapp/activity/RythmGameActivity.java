@@ -27,15 +27,21 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void giveInst() {
-        for(String seq : rythmSeq) {
-            tvInstruction.setText(seq);
-            try {
-                Thread.sleep(700);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
 
+        new Thread() {
+            @Override
+            public void run() {
+
+                for(String seq : rythmSeq) {
+                    tvInstruction.setText(seq);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
     }
 
     public void setDestination() {    }
