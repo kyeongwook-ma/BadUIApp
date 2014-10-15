@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import selab.dev.baduiapp.R;
+import selab.dev.baduiapp.view.DragClickListener;
 
 /**
  * Created by se on 2014-10-14.

@@ -2,12 +2,18 @@ package selab.dev.baduiapp.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import selab.dev.baduiapp.R;
+import selab.dev.baduiapp.view.DragClickListener;
+import selab.dev.baduiapp.view.DragZoom;
 
 /**
  * Created by makyungjae on 2014. 10. 14..
@@ -31,12 +37,12 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
         ivBall.setScaleY(0.5f);
 
         ivBall.setOnLongClickListener(new DragClickListener());
-
         ivBall.setOnClickListener(this);
 
         ivSpring = (ImageView)findViewById(R.id.iv_spring);
         ivSpring.setTag("Spring");
         ivSpring.setOnClickListener(this);
+        ivSpring.setOnTouchListener(new DragZoom());
 
     }
 
@@ -119,8 +125,19 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_ball:
+
+                RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+                anim.setInterpolator(new LinearInterpolator());
+                anim.setRepeatCount(Animation.INFINITE);
+                anim.setDuration(3000);
+
+                ivBall.startAnimation(anim);
+
                 break;
             case R.id.iv_spring:
+
+                Toast.makeText(this, "This is a spring", Toast.LENGTH_SHORT).show();
+
                 break;
 
         }

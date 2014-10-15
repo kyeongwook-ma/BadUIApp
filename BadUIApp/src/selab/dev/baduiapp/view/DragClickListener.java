@@ -1,4 +1,4 @@
-package selab.dev.baduiapp.activity;
+package selab.dev.baduiapp.view;
 
 import android.content.ClipData;
 import android.content.ClipDescription;

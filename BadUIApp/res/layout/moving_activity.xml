@@ -28,7 +28,8 @@
             android:id="@+id/iv_spring"
             android:src="@drawable/constant"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:scaleType="matrix" />
 
     </RelativeLayout>
 

@@ -1,4 +1,4 @@
-package selab.dev.baduiapp.activity;
+package selab.dev.baduiapp.view;
 
 import android.util.Log;
 import android.view.GestureDetector;
