@@ -1,8 +1,6 @@
 package selab.dev.baduiapp.activity;
 
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,7 +12,7 @@ import selab.dev.baduiapp.R;
 /**
  * Created by makyungjae on 2014. 10. 14..
  */
-public class MovingBallActivity extends BaseActivity {
+public class MovingBallActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView ivBall, ivSpring;
 
@@ -34,15 +32,12 @@ public class MovingBallActivity extends BaseActivity {
 
         ivBall.setOnLongClickListener(new DragClickListener());
 
-        final DoubleTabListener doubleTabListener = new DoubleTabListener();
-        final GestureDetector gestureDetector = new GestureDetector(this, doubleTabListener);
+        ivBall.setOnClickListener(this);
 
-        ivBall.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return gestureDetector.onTouchEvent(motionEvent);
-            }
-        });
+        ivSpring = (ImageView)findViewById(R.id.iv_spring);
+        ivSpring.setTag("Spring");
+        ivSpring.setOnClickListener(this);
+
     }
 
     /*
@@ -118,5 +113,16 @@ public class MovingBallActivity extends BaseActivity {
     @Override
     protected void setDestination() {
         missionMonitor.setDestination(this, FeedActiviy.class);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_ball:
+                break;
+            case R.id.iv_spring:
+                break;
+
+        }
     }
 }

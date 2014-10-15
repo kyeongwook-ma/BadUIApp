@@ -17,7 +17,7 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     private Button fakeSpace, B,C;
     private TextView tvInstruction;
-    private final String[] rythmSeq = {"Space", "B", "C", "Space","A","E","A","D", "Space", "Finish"};
+    private final String[] rythmSeq = {"Space", "B", "C", "Space","A","E","A","D", "Space", "Finish!!"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,7 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-    public void setDestination() {
-        missionMonitor.setDestination(this, MovingBallActivity.class);
-    }
+    public void setDestination() {    }
 
     @Override
     protected List<Object> makeExpectValue() {
