@@ -1,8 +1,12 @@
 package selab.dev.baduiapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,6 +43,23 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
         meat.setOnLongClickListener(new DragClickListener());
 
         button = (ImageView)findViewById(R.id.imageView);
+
+        GestureDetector.SimpleOnGestureListener ls = new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                startActivity(new Intent(FeedActiviy.this, MovingBallActivity.class));
+                finish();
+                return true;
+            }
+        };
+
+        final GestureDetector gestureDetector = new GestureDetector(this, ls);
+        button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return gestureDetector.onTouchEvent(motionEvent);
+            }
+        });
         button.setOnClickListener(this);
 
     }
@@ -57,9 +78,11 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_pome:
+                Toast.makeText(this, "먹이를 주시오", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.iv_feed:
+                Toast.makeText(this, "고기", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.imageView:

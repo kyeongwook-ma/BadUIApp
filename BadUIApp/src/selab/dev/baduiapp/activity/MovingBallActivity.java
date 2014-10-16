@@ -21,6 +21,7 @@ import selab.dev.baduiapp.view.DragZoom;
 public class MovingBallActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView ivBall, ivSpring;
+    private boolean isSpinning = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -126,12 +127,18 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.iv_ball:
 
-                RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-                anim.setInterpolator(new LinearInterpolator());
-                anim.setRepeatCount(Animation.INFINITE);
-                anim.setDuration(3000);
+                if(!isSpinning) {
+                    isSpinning = true;
+                    RotateAnimation anim =  new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    anim.setInterpolator(new LinearInterpolator());
+                    anim.setRepeatCount(Animation.INFINITE);
+                    anim.setDuration(400);
 
-                ivBall.startAnimation(anim);
+                    ivBall.startAnimation(anim);
+                } else {
+                    ivBall.clearAnimation();
+                    isSpinning = false;
+                }
 
                 break;
             case R.id.iv_spring:
