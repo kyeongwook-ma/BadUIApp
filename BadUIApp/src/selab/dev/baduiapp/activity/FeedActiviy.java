@@ -28,6 +28,11 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    protected String genInfoDialogMsg() {
+        return "강아지에게 먹이를 주시오";
+    }
+
 
     @Override
     protected void initView() {
@@ -61,6 +66,8 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
             }
         });
         button.setOnClickListener(this);
+
+
 
     }
 

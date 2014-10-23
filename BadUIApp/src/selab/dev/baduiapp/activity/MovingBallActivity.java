@@ -29,6 +29,11 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
     }
 
     @Override
+    protected String genInfoDialogMsg() {
+        return "공을 화면 밖으로 이동시키시오";
+    }
+
+    @Override
     protected void initView() {
         setContentView(R.layout.moving_activity);
 

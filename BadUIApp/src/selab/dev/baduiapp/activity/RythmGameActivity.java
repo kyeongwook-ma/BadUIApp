@@ -32,6 +32,11 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     }
 
+    @Override
+    protected String genInfoDialogMsg() {
+        return "화면에 나타는 글자에 따른 버튼을 누르시오";
+    }
+
     private void giveInst() {
         final Timer myTimer = new Timer();
         final Handler handler = new Handler();
