@@ -1,6 +1,7 @@
 package selab.dev.baduiapp.activity;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -18,7 +19,7 @@ import selab.dev.baduiapp.view.DragZoom;
 /**
  * Created by makyungjae on 2014. 10. 14..
  */
-public class MovingBallActivity extends BaseActivity implements View.OnClickListener {
+public class MovingBallActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener {
 
     private ImageView ivBall, ivSpring;
     private boolean isSpinning = false;
@@ -153,5 +154,24 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
                 break;
 
         }
+    }
+
+
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (view.getId()) {
+
+            case R.id.iv_spring:
+
+                double x = view.getX();
+
+
+
+                break;
+
+        }
+
+        return false;
     }
 }
