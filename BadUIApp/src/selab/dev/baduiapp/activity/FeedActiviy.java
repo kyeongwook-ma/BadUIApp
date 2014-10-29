@@ -11,6 +11,8 @@ import android.widget.Toast;
 import java.util.List;
 
 import selab.dev.baduiapp.R;
+import selab.dev.baduiapp.util.LogUtil;
+import selab.dev.baduiapp.util.TouchMode;
 import selab.dev.baduiapp.view.DragClickListener;
 
 /**
@@ -44,7 +46,6 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
         meat = (ImageView)findViewById(R.id.iv_feed);
         meat.setTag("Meat");
         meat.setOnClickListener(this);
-        meat.setVisibility(View.INVISIBLE);
         meat.setOnLongClickListener(new DragClickListener());
 
         button = (ImageView)findViewById(R.id.imageView);
@@ -52,6 +53,7 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
         GestureDetector.SimpleOnGestureListener ls = new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
+                LogUtil.writeBMLog("Feed", TouchMode.DOUBLE_TOUCH);
                 startActivity(new Intent(FeedActiviy.this, MovingBallActivity.class));
                 finish();
                 return true;
@@ -85,10 +87,13 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_pome:
+                LogUtil.writeBMLog("Pome", TouchMode.DOUBLE_TOUCH);
                 Toast.makeText(this, "먹이를 주시오", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.iv_feed:
+                LogUtil.writeBMLog("Feed", TouchMode.DOUBLE_TOUCH);
+
                 Toast.makeText(this, "고기", Toast.LENGTH_SHORT).show();
                 break;
 

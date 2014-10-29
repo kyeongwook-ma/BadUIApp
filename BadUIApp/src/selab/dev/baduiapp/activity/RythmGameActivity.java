@@ -15,6 +15,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import selab.dev.baduiapp.R;
+import selab.dev.baduiapp.util.LogUtil;
+import selab.dev.baduiapp.util.TouchMode;
 
 /**
  * Created by makyungjae on 2014. 10. 14..
@@ -168,13 +170,32 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.fake_space:
                 missionMonitor.addValue(fakeSpace.getText().toString());
+                LogUtil.writeBMLog("Space", TouchMode.CLICK);
+                break;
+
+            case R.id.fake_a:
+                missionMonitor.addValue(A.getText().toString());
+                LogUtil.writeBMLog("A", TouchMode.CLICK);
                 break;
 
             case R.id.fake_b:
                 missionMonitor.addValue(B.getText().toString());
+                LogUtil.writeBMLog("B", TouchMode.CLICK);
                 break;
+
             case R.id.fake_c:
                 missionMonitor.addValue(C.getText().toString());
+                LogUtil.writeBMLog("C", TouchMode.CLICK);
+                break;
+
+            case R.id.fake_d:
+                missionMonitor.addValue(D.getText().toString());
+                LogUtil.writeBMLog("D", TouchMode.CLICK);
+                break;
+
+            case R.id.fake_e:
+                missionMonitor.addValue(E.getText().toString());
+                LogUtil.writeBMLog("E", TouchMode.CLICK);
                 break;
 
             case R.id.tv_inst:

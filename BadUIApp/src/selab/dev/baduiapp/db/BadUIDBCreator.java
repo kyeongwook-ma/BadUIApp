@@ -13,7 +13,8 @@ public class BadUIDBCreator implements IDBCreator {
 		final String BM_TABLE_CREATE_STMT = "CREATE TABLE "
 				+ BMDBscheme.TABLE_NAME + " ("
 				+ BMDBscheme.COLUMN_ID + " INTEGER, " 
-				+ BMDBscheme.COLUMN_CLASS + " TEXT, " 
+				+ BMDBscheme.COLUMN_CLASS + " TEXT, "
+                + BMDBscheme.COLUMN_MODE + " TEXT, "
 				+ "FOREIGN KEY (" + BMDBscheme.COLUMN_ID + ") "
 				+ "REFERENCES " + SeqDBscheme.TABLE_NAME + "(" + SeqDBscheme.COLUMN_ID + ") );" ;
 

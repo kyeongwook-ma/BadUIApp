@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import selab.dev.baduiapp.R;
+import selab.dev.baduiapp.util.LogUtil;
+import selab.dev.baduiapp.util.TouchMode;
 import selab.dev.baduiapp.view.DragClickListener;
 import selab.dev.baduiapp.view.DragZoom;
 
@@ -141,6 +143,9 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
                     anim.setDuration(400);
 
                     ivBall.startAnimation(anim);
+
+                    LogUtil.writeBMLog("Ball", TouchMode.CLICK);
+
                 } else {
                     ivBall.clearAnimation();
                     isSpinning = false;
@@ -150,6 +155,8 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
             case R.id.iv_spring:
 
                 Toast.makeText(this, "This is a spring", Toast.LENGTH_SHORT).show();
+
+                LogUtil.writeBMLog("Spring", TouchMode.CLICK);
 
                 break;
 
