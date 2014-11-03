@@ -3,115 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="selab.dev.baduiapp.activity.MainActivity" >
+    tools:context="selab.dev.baduiapp.activity.MainActivity"
+    android:gravity="center">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:background="#000000"
-        android:orientation="horizontal" >
+        android:text="sdfasdfasdf"
+        android:id="@+id/tv_main"
+        android:layout_gravity="center_horizontal"
+        android:autoText="true" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/btn_fale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next ->" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.9"
-        android:gravity="center_vertical|center_horizontal"
-        android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="Next" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/button1"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="23dp"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="어른" />
-
-            <LinearLayout
-                android:id="@+id/ll_adult"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#D9D9D9" >
-
-                <Button
-                    android:id="@+id/btn_fake_adult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <Spinner
-                    android:id="@+id/spin_adult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="아이" />
-
-            <LinearLayout
-                android:id="@+id/ll_child"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:background="#D9D9D9" >
-
-                <Button
-                    android:id="@+id/btn_fake_child"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-                <Spinner
-                    android:id="@+id/spin_child"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-    </RelativeLayout>
-
+        android:text="진행하기"
+        android:id="@+id/btn_next"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp" />
 </LinearLayout>

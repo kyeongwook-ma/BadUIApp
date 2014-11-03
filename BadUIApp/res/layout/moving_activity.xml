@@ -19,17 +19,27 @@
             android:minHeight="20dp"
             android:minWidth="20dp"
             android:scaleType="fitXY"
-            android:layout_above="@+id/iv_spring"
             android:layout_centerHorizontal="true" />
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="300dp"
-            android:id="@+id/iv_spring"
-            android:src="@drawable/constant"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:scaleType="matrix" />
+            android:layout_alignParentLeft="false"
+            android:gravity="center"
+            android:id="@+id/ll_dragzone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_spring"
+                android:src="@drawable/constant"
+                android:scaleType="matrix"
+                android:layout_gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true" />
+        </LinearLayout>
 
     </RelativeLayout>
 

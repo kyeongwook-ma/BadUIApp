@@ -1,12 +1,15 @@
 package selab.dev.baduiapp.activity;
 
 import android.os.Bundle;
+import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,7 +19,6 @@ import selab.dev.baduiapp.R;
 import selab.dev.baduiapp.util.LogUtil;
 import selab.dev.baduiapp.util.TouchMode;
 import selab.dev.baduiapp.view.DragClickListener;
-import selab.dev.baduiapp.view.DragZoom;
 
 /**
  * Created by makyungjae on 2014. 10. 14..
@@ -24,6 +26,7 @@ import selab.dev.baduiapp.view.DragZoom;
 public class MovingBallActivity extends BaseActivity implements View.OnClickListener, View.OnTouchListener {
 
     private ImageView ivBall, ivSpring;
+    private LinearLayout dragZone;
     private boolean isSpinning = false;
 
     @Override
@@ -45,17 +48,20 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
         ivBall.setScaleX(0.5f);
         ivBall.setScaleY(0.5f);
 
-        ivBall.setOnLongClickListener(new DragClickListener());
         ivBall.setOnClickListener(this);
+        ivBall.setOnLongClickListener(new DragClickListener());
 
         ivSpring = (ImageView)findViewById(R.id.iv_spring);
         ivSpring.setTag("Spring");
         ivSpring.setOnClickListener(this);
-        ivSpring.setOnTouchListener(new DragZoom());
+
+        dragZone = (LinearLayout)findViewById(R.id.ll_dragzone);
+        dragZone.setOnDragListener(new MyDragListener());
+
 
     }
 
-    /*
+
     class MyDragListener implements View.OnDragListener {
        // Drawable normalShape = getResources().getDrawable(R.drawable.normal_shape);
        // Drawable targetShape = getResources().getDrawable(R.drawable.target_shape);
@@ -73,40 +79,31 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
 
                 //the drag point has entered the bounding box of the View
                 case DragEvent.ACTION_DRAG_ENTERED:
-                    v.setBackground(targetShape);	//change the shape of the view
                     break;
 
                 //the user has moved the drag shadow outside the bounding box of the View
                 case DragEvent.ACTION_DRAG_EXITED:
-                    v.setBackground(normalShape);	//change the shape of the view back to normal
                     break;
 
                 //drag shadow has been released,the drag point is within the bounding box of the View
                 case DragEvent.ACTION_DROP:
                     // if the view is the bottomlinear, we accept the drag item
-                    if(v == findViewById(R.id.bottomlinear)) {
-                        View view = (View) event.getLocalState();
-                        ViewGroup viewgroup = (ViewGroup) view.getParent();
-                        viewgroup.removeView(view);
+                    if(isSpinning && v == findViewById(R.id.ll_dragzone)) {
 
-                        //change the text
-
-                        LinearLayout containView = (LinearLayout) v;
-                        containView.addView(view);
-                        view.setVisibility(View.VISIBLE);
-                    } else {
-                        View view = (View) event.getLocalState();
-                        view.setVisibility(View.VISIBLE);
-                        Context context = getApplicationContext();
-                        Toast.makeText(context, "You can't drop the image here",
-                                Toast.LENGTH_LONG).show();
-                        break;
+                        TranslateAnimation ani = new TranslateAnimation(
+                                Animation.RELATIVE_TO_SELF, 0,
+                                Animation.RELATIVE_TO_SELF, 10,
+                                Animation.RELATIVE_TO_SELF, 1,
+                                Animation.RELATIVE_TO_SELF, -300);
+                        ani.setFillAfter(true); // 애니메이션 후 이동한좌표에
+                        ani.setDuration(10000); //지속시간
+                        ivBall.startAnimation(ani);
                     }
                     break;
 
                 //the drag and drop operation has concluded.
                 case DragEvent.ACTION_DRAG_ENDED:
-                    v.setBackground(normalShape);	//go back to normal shape
+                    //v.setBackground(normalShape);	//go back to normal shape
 
                 default:
                     break;
@@ -114,7 +111,7 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
             return true;
         }
     }
-    */
+
     @Override
     protected List<Object> makeExpectValue() {
 

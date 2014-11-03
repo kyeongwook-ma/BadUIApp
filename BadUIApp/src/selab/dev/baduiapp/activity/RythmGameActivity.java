@@ -36,7 +36,7 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected String genInfoDialogMsg() {
-        return "화면에 나타는 글자에 따른 버튼을 누르시오";
+        return "화면에 나타는 글자에 따라 버튼을 누르시오";
     }
 
     private void giveInst() {

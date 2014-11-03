@@ -1,25 +1,19 @@
 package selab.dev.baduiapp.activity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.TextView;
 
 import selab.dev.baduiapp.R;
 
-public class MainActivity extends BadUICheckActivity implements OnClickListener {
+public class MainActivity extends Activity{
 
-	private Button fakeChild, fakeAdult;
-	private LinearLayout llChild, llAdult;
-	private Spinner spChild, spAdult;
+	private TextView mainText;
+    private Button btnNext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,65 +25,28 @@ public class MainActivity extends BadUICheckActivity implements OnClickListener 
 
 	private void initView() {
 
-		fakeAdult = (Button)findViewById(R.id.btn_fake_adult);
-		fakeChild = (Button)findViewById(R.id.btn_fake_child);
-		llAdult = (LinearLayout)findViewById(R.id.ll_adult);
-		llChild = (LinearLayout)findViewById(R.id.ll_child);
+        mainText = (TextView)findViewById(R.id.tv_main);
+        mainText.setText("본 어플리케이션은 사용자 인터페이스"+
+        "사용성 측정을 위해 제작되었습니다.\n\n"+
+        "각 실험마다 지시사항이 주어지며 이를 해결하면 다음 실험으로 넘어갑니다."+
+        "총 3개의 실험이 진행되며 실험사항에 대한 사용자 행동이 기록됩니다.");
 
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, generateSeq(10));
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-		spAdult = (Spinner)findViewById(R.id.spin_adult);
-		spAdult.setAdapter(dataAdapter);
-		spAdult.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View v,
-					int pos, long id) {
-				fakeAdult.setText(parent.getItemAtPosition(pos).toString() + "��");
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-
-			}
-		});
-
-		spChild = (Spinner)findViewById(R.id.spin_child);
-		spChild.setAdapter(dataAdapter);
-		spChild.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View v,
-					int pos, long id) {
-				fakeChild.setText(parent.getItemAtPosition(pos).toString() + "��");
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-
-			}
-		});
+        btnNext = (Button)findViewById(R.id.btn_next);
+        btnNext.setBackgroundColor(Color.parseColor("#00bfff"));
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.btn_next:
+                        startActivity(new Intent(MainActivity.this, RythmGameActivity.class));
+                        finish();
+                        break;
+                }
+            }
+        });
 
 	}
 
-	private List<String> generateSeq(int maxSeq) {
-
-		ArrayList<String> seqList = new ArrayList<String>();
-
-		for(int i = 0; i < maxSeq; ++i) {
-			seqList.add(String.valueOf(i));
-		}
-
-		return seqList;
-	}
-
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
-	}
 
 
 }
