@@ -73,7 +73,7 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
         myTimer.schedule(new TimerTask() {
             @Override
             public void run() { handler.post(myRunnable);}
-        }, 1000, 700);
+        }, 1500, 1500);
 
     }
 

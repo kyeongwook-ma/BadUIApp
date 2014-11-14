@@ -28,7 +28,7 @@ public abstract class BaseActivity extends Activity {
 
         infoDialog = new InfoDialog(this);
         infoDialog.setMessage(genInfoDialogMsg());
-        infoDialog.show();
+        // infoDialog.show();
     }
 
     protected abstract String genInfoDialogMsg();
