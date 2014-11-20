@@ -27,13 +27,15 @@ public abstract class BaseActivity extends Activity {
         initView();
         super.onCreate(savedInstanceState);
 
+        /* activity 실행시부터 초단위 기록 */
         timer = new ActivityTimer();
         timer.startTimer();
 
+        /* 실험의 상태 모니터링 (현재 이용 안함) */
         expectedValue = makeExpectValue();
         setDestination();
 
-
+        /* 해당 실험 차수 sequence 기록 */
         startRecordSeqNum();
     }
 

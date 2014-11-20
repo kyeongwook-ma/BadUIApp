@@ -6,5 +6,6 @@ public class BMDBscheme {
 	public static final String COLUMN_ID = "seq_id";
 	public static final String COLUMN_CLASS = "touch_class";
     public static final String COLUMN_MODE = "touch_mode";
+    public static final String COLUMN_TIMESTAMP = "time_stamp";
 	
 }
