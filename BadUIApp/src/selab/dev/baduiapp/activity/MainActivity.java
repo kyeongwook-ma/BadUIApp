@@ -1,6 +1,7 @@
 package selab.dev.baduiapp.activity;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +10,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import selab.dev.baduiapp.R;
+import selab.dev.baduiapp.db.DBHelper;
+import selab.dev.baduiapp.db.SeqDBscheme;
+import selab.dev.baduiapp.util.ActivityTimer;
+import selab.dev.baduiapp.util.SeqHolder;
 
 public class MainActivity extends Activity{
 
@@ -21,9 +26,38 @@ public class MainActivity extends Activity{
 		setContentView(R.layout.activity_main);
 		initView();
 
+        /* 해당 실험 차수 sequence 기록 */
+        startRecordSeqNum();
+
 	}
 
-	private void initView() {
+    private void recordElapsedTime(int seq, int elapsedTime) {
+
+		/* INSERT INTO SeqTable(times) VALUES (elapsedTime) WHERE _id=seq */
+        final String sql = "UPDATE " + SeqDBscheme.TABLE_NAME +
+                " SET " + SeqDBscheme.COLUMN_TIME + " = " + String.valueOf(elapsedTime) +
+                " WHERE " + SeqDBscheme.COLUMN_ID + " = " + String.valueOf(seq) + " ;";
+
+        DBHelper.getInstance().exec(sql);
+    }
+
+    private void startRecordSeqNum() {
+        int seq = SeqHolder.getCurrSeq();
+
+        ContentValues cv = new ContentValues();
+        cv.put("_id", seq);
+        DBHelper.getInstance().insert(SeqDBscheme.TABLE_NAME, cv);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        recordElapsedTime(SeqHolder.getCurrSeq(), ActivityTimer.getInstance().getElapsedTime());
+        SeqHolder.saveCurrentSeq();
+    }
+
+    private void initView() {
 
         mainText = (TextView)findViewById(R.id.tv_main);
         mainText.setText("본 어플리케이션은 사용자 인터페이스"+
@@ -39,7 +73,6 @@ public class MainActivity extends Activity{
                 switch (view.getId()) {
                     case R.id.btn_next:
                         startActivity(new Intent(MainActivity.this, RythmGameActivity.class));
-                        finish();
                         break;
                 }
             }

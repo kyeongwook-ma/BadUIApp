@@ -15,6 +15,7 @@ public class BadUIDBCreator implements IDBCreator {
 				+ BMDBscheme.COLUMN_ID + " INTEGER, " 
 				+ BMDBscheme.COLUMN_CLASS + " TEXT, "
                 + BMDBscheme.COLUMN_MODE + " TEXT, "
+                + BMDBscheme.COLUMN_TIMESTAMP + " INTEGER, "
 				+ "FOREIGN KEY (" + BMDBscheme.COLUMN_ID + ") "
 				+ "REFERENCES " + SeqDBscheme.TABLE_NAME + "(" + SeqDBscheme.COLUMN_ID + ") );" ;
 

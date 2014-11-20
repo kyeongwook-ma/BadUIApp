@@ -4,7 +4,8 @@ public class SeqHolder {
 	private static int seq;
 
 	public static int getCurrSeq() {
-		return SharedPrefsUtil.getSharedPreferenceInt("seq");
+        seq = SharedPrefsUtil.getSharedPreferenceInt("seq") + 1;
+		return seq;
 	}
 	
 	public static void saveCurrentSeq() {
