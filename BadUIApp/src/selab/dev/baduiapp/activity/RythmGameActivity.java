@@ -25,27 +25,23 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
 
     private Button fakeSpace, A,B,C,D,E;
     private TextView tvInstruction;
-    private final String[] rythmSeq = {"Space", "B", "C", "Space","A","E","A","D", "Space", "Finish!!"};
+    private final String[] rythmSeq = {"Space", "B", "C", "Space","A","E","A","D", "Space"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //giveInst();
 
-    }
-
-    @Override
-    protected String genInfoDialogMsg() {
-        return "화면에 나타는 글자에 따라 버튼을 누르시오";
     }
 
     private void giveInst() {
         final Timer myTimer = new Timer();
         final Handler handler = new Handler();
         final Runnable myRunnable = new Runnable() {
+            int colors[] = new int[] { Color.CYAN, Color.GREEN, Color.MAGENTA, Color.YELLOW };
 
             int valIdx = 0;
-            int colors[] = new int[] { Color.CYAN, Color.GREEN, Color.MAGENTA, Color.YELLOW };
 
             public void run() {
                 if(valIdx < rythmSeq.length) {
@@ -71,7 +67,7 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
         myTimer.schedule(new TimerTask() {
             @Override
             public void run() { handler.post(myRunnable);}
-        }, 1500, 1500);
+        }, 1000, 1000);
 
     }
 
@@ -128,6 +124,7 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
     protected List<Object> makeExpectValue() {
         List<Object> expectedValue = new ArrayList<Object>();
 
+
         for(String seq : rythmSeq) {
             expectedValue.add(seq);
         }
@@ -160,38 +157,92 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
         tvInstruction = (TextView)findViewById(R.id.tv_inst);
         tvInstruction.setOnClickListener(this);
 
+        StringBuilder sb = new StringBuilder();
+
+        for(String inst : rythmSeq) {
+            sb.append(" " + inst + " ");
+        }
+
+        tvInstruction.setText(sb.toString());
+
     }
 
     @Override
     public void onClick(View view) {
+        int colors[] = new int[] { Color.CYAN, Color.GREEN, Color.MAGENTA, Color.YELLOW };
+        int rand = new Random().nextInt(colors.length);
 
         switch (view.getId()) {
             case R.id.fake_space:
+                fakeSpace.setTextColor(colors[rand]);
+                A.setTextColor(Color.WHITE);
+                B.setTextColor(Color.WHITE);
+                C.setTextColor(Color.WHITE);
+                D.setTextColor(Color.WHITE);
+                E.setTextColor(Color.WHITE);
+
                 LogUtil.writeBMLog("Space", TouchMode.CLICK);
+
                 break;
 
             case R.id.fake_a:
+                A.setTextColor(colors[rand]);
+                B.setTextColor(Color.WHITE);
+                C.setTextColor(Color.WHITE);
+                D.setTextColor(Color.WHITE);
+                E.setTextColor(Color.WHITE);
+                fakeSpace.setTextColor(Color.WHITE);
+
+
                 LogUtil.writeBMLog("A", TouchMode.CLICK);
                 break;
 
             case R.id.fake_b:
+                B.setTextColor(colors[rand]);
+
+                A.setTextColor(Color.WHITE);
+                C.setTextColor(Color.WHITE);
+                D.setTextColor(Color.WHITE);
+                E.setTextColor(Color.WHITE);
+                fakeSpace.setTextColor(Color.WHITE);
+
                 LogUtil.writeBMLog("B", TouchMode.CLICK);
                 break;
 
             case R.id.fake_c:
+                C.setTextColor(colors[rand]);
+                A.setTextColor(Color.WHITE);
+                B.setTextColor(Color.WHITE);
+                D.setTextColor(Color.WHITE);
+                E.setTextColor(Color.WHITE);
+                fakeSpace.setTextColor(Color.WHITE);
+
                 LogUtil.writeBMLog("C", TouchMode.CLICK);
                 break;
 
             case R.id.fake_d:
+                D.setTextColor(colors[rand]);
+                A.setTextColor(Color.WHITE);
+                B.setTextColor(Color.WHITE);
+                C.setTextColor(Color.WHITE);
+                E.setTextColor(Color.WHITE);
+                fakeSpace.setTextColor(Color.WHITE);
+
                 LogUtil.writeBMLog("D", TouchMode.CLICK);
                 break;
 
             case R.id.fake_e:
+                E.setTextColor(colors[rand]);
+                A.setTextColor(Color.WHITE);
+                B.setTextColor(Color.WHITE);
+                C.setTextColor(Color.WHITE);
+                D.setTextColor(Color.WHITE);
+                fakeSpace.setTextColor(Color.WHITE);
+
                 LogUtil.writeBMLog("E", TouchMode.CLICK);
                 break;
 
             case R.id.tv_inst:
-                giveInst();
                 break;
         }
 

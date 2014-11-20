@@ -34,10 +34,6 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
 
     }
 
-    @Override
-    protected String genInfoDialogMsg() {
-        return "강아지에게 먹이를 주시오";
-    }
 
 
     @Override
@@ -65,13 +61,8 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
             }
         };
 
-        final GestureDetector gestureDetector = new GestureDetector(this, ls);
-        button.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return gestureDetector.onTouchEvent(motionEvent);
-            }
-        });
+
+
         button.setOnClickListener(this);
 
 
@@ -80,7 +71,7 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void setDestination() {
-        missionMonitor.setDestination(null,null);
+        // missionMonitor.setDestination(null,null);
     }
 
     @Override
@@ -141,6 +132,7 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
                     // if the view is the bottomlinear, we accept the drag item
                     if(v == findViewById(R.id.iv_pome)) {
                         startActivity(new Intent(FeedActiviy.this, MovingBallActivity.class));
+                        finish();
                     }
                     break;
 

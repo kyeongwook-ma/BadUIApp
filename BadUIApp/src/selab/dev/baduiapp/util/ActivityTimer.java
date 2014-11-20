@@ -1,41 +1,34 @@
 package selab.dev.baduiapp.util;
 
 
-import android.util.Log;
+import java.util.TimerTask;
 
-public class ActivityTimer extends Thread {
+public class ActivityTimer extends TimerTask {
 
-	private int times = 0;
-	private boolean isRunning = false;
-	
-	public ActivityTimer() {
-		isRunning = true;
-	}
-	
-	@Override
-	public void run() {
-		while(isRunning) {
-			++times;
-			try {
-				Thread.sleep(1000);
-                Log.i("time", String.valueOf(times));
-            } catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	public void startTimer() {
-		isRunning = true;
-	}
-	
-	public void stopTimer() {
-		isRunning = false;
-	}
-	
-	public int getElapsedTime() {
-		return times;
-	}
-	
-	
+    private int times = 0;
+    private boolean isRunning = false;
+
+    public ActivityTimer() {
+        isRunning = true;
+    }
+
+    @Override
+    public void run() {
+        if(isRunning)
+            ++times;
+    }
+
+    public void startTimer() {
+        isRunning = true;
+    }
+
+    public void stopTimer() {
+        isRunning = false;
+    }
+
+    public int getElapsedTime() {
+        return times;
+    }
+
+
 }

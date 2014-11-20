@@ -34,10 +34,7 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    protected String genInfoDialogMsg() {
-        return "공을 화면 밖으로 이동시키시오";
-    }
+
 
     @Override
     protected void initView() {
@@ -124,7 +121,7 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void setDestination() {
-        missionMonitor.setDestination(this, FeedActiviy.class);
+        // missionMonitor.setDestination(this, FeedActiviy.class);
     }
 
     @Override
