@@ -23,7 +23,7 @@ public class TCPServer implements Runnable{
 							InputStreamReader(sock.getInputStream()));
 					String str = in.readLine();
 					System.out.println("수신중인 파일 이름 : " + str);
-					File f = new File("c:\\down\\", str);
+					File f = new File("./", str);
 					FileOutputStream output = new FileOutputStream(f);
 					byte[] buf = new byte[1024];                                       while(sock.getInputStream().read(buf)>0)
 					{
