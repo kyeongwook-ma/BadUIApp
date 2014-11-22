@@ -8,22 +8,24 @@ import java.net.Socket;
 
 public class TCPServer implements Runnable{
 	public static final int serverPort = 10200;
+    private int idx = 0;
 	@Override
 	public void run(){
 		try{
-			System.out.println("대기중..");
+			System.out.println("wating..");
 			ServerSocket serverSocket = new ServerSocket(serverPort);
 
 			while(true)
 			{
 				Socket sock = serverSocket.accept();
-				System.out.println("수신중....");
+				System.out.println("receving....");
 				try{
+                    ++idx;
 					BufferedReader in = new BufferedReader(new
 							InputStreamReader(sock.getInputStream()));
-					String str = in.readLine();
-					System.out.println("수신중인 파일 이름 : " + str);
-					File f = new File("./", str);
+
+					System.out.println("receiving : ");
+					File f = new File("./", String.valueOf(idx));
 					FileOutputStream output = new FileOutputStream(f);
 					byte[] buf = new byte[1024];                                       while(sock.getInputStream().read(buf)>0)
 					{
@@ -34,7 +36,7 @@ public class TCPServer implements Runnable{
 					output.close();
 				}
 				catch(Exception e){
-					System.out.println("서버 에러!!");
+					System.out.println("err!!");
 					e.printStackTrace();
 				}
 				finally{
