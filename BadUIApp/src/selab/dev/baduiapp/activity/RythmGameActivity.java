@@ -24,7 +24,7 @@ import selab.dev.baduiapp.util.TouchMode;
 public class RythmGameActivity extends BaseActivity implements View.OnClickListener {
 
     private Button fakeSpace, A,B,C,D,E;
-    private TextView tvInstruction;
+    private TextView tvInstruction, tvCount;
     private final String[] rythmSeq = {"Space", "B", "C", "Space","A","E","A","D", "Space"};
 
     @Override
@@ -42,15 +42,13 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
             int countDown = 5;
             public void run() {
 
-                String inst = tvInstruction.getText().toString();
-
-                for(int countdown = 5; countdown == 0; --countdown) {
-                    tvInstruction.setText(inst + " " + String.valueOf(--countDown) + " 초 후 실험이 종료됩니다.");
+                if(countDown == 0) {
+                    startActivity(new Intent(RythmGameActivity.this, FeedActiviy.class));
+                    finish();
+                    myTimer.cancel();
+                } else {
+                    tvCount.setText(String.valueOf(--countDown) + " 초 후 실험이 종료됩니다.");
                 }
-
-                 startActivity(new Intent(RythmGameActivity.this, FeedActiviy.class));
-                 finish();
-
             }
         };
 
@@ -144,7 +142,8 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
         E.setOnClickListener(this);
 
         tvInstruction = (TextView)findViewById(R.id.tv_inst);
-        tvInstruction.setOnClickListener(this);
+
+        tvCount = (TextView)findViewById(R.id.tv_count);
 
         StringBuilder sb = new StringBuilder();
 
