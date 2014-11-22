@@ -1,5 +1,6 @@
 package selab.dev.baduiapp.activity;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -12,10 +13,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import selab.dev.baduiapp.R;
+import selab.dev.baduiapp.db.DBExporter;
+import selab.dev.baduiapp.db.DBHelper;
 import selab.dev.baduiapp.util.LogUtil;
 import selab.dev.baduiapp.util.TouchMode;
 import selab.dev.baduiapp.view.DragClickListener;
@@ -53,60 +57,72 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
         ivSpring.setOnClickListener(this);
 
         dragZone = (LinearLayout)findViewById(R.id.ll_dragzone);
-        dragZone.setOnDragListener(new MyDragListener());
+        dragZone.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+
+                // Handles each of the expected events
+                switch (dragEvent.getAction()) {
+
+                    //signal for the start of a drag and drop operation.
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        LogUtil.writeBMLog("Ball", TouchMode.DRAG);
+                        break;
+
+                    //the drag point has entered the bounding box of the View
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        break;
+
+                    //the user has moved the drag shadow outside the bounding box of the View
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        break;
+
+                    //drag shadow has been released,the drag point is within the bounding box of the View
+                    case DragEvent.ACTION_DROP:
+                        // if the view is the bottomlinear, we accept the drag item
+                        if(isSpinning && view == findViewById(R.id.ll_dragzone)) {
+
+                            TranslateAnimation ani = new TranslateAnimation(
+                                    Animation.RELATIVE_TO_SELF, 0,
+                                    Animation.RELATIVE_TO_SELF, 10,
+                                    Animation.RELATIVE_TO_SELF, 1,
+                                    Animation.RELATIVE_TO_SELF, -300);
+                            ani.setFillAfter(true); // 애니메이션 후 이동한좌표에
+                            ani.setDuration(10000); //지속시간
+
+                            ivBall.startAnimation(ani);
+
+                            LogUtil.writeBMLog("Ball", TouchMode.DROP);
+
+                            try {
+                                DBExporter.exportDB("163.239.27.31", DBHelper.DB_NAME);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                        break;
+
+                    //the drag and drop operation has concluded.
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        //v.setBackground(normalShape);	//go back to normal shape
+
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
 
 
     }
 
 
-    class MyDragListener implements View.OnDragListener {
-       // Drawable normalShape = getResources().getDrawable(R.drawable.normal_shape);
-       // Drawable targetShape = getResources().getDrawable(R.drawable.target_shape);
-
-        @Override
-        public boolean onDrag(View v, DragEvent event) {
-
-            // Handles each of the expected events
-            switch (event.getAction()) {
-
-                //signal for the start of a drag and drop operation.
-                case DragEvent.ACTION_DRAG_STARTED:
-                    // do nothing
-                    break;
-
-                //the drag point has entered the bounding box of the View
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    break;
-
-                //the user has moved the drag shadow outside the bounding box of the View
-                case DragEvent.ACTION_DRAG_EXITED:
-                    break;
-
-                //drag shadow has been released,the drag point is within the bounding box of the View
-                case DragEvent.ACTION_DROP:
-                    // if the view is the bottomlinear, we accept the drag item
-                    if(isSpinning && v == findViewById(R.id.ll_dragzone)) {
-
-                        TranslateAnimation ani = new TranslateAnimation(
-                                Animation.RELATIVE_TO_SELF, 0,
-                                Animation.RELATIVE_TO_SELF, 10,
-                                Animation.RELATIVE_TO_SELF, 1,
-                                Animation.RELATIVE_TO_SELF, -300);
-                        ani.setFillAfter(true); // 애니메이션 후 이동한좌표에
-                        ani.setDuration(10000); //지속시간
-                        ivBall.startAnimation(ani);
-                    }
-                    break;
-
-                //the drag and drop operation has concluded.
-                case DragEvent.ACTION_DRAG_ENDED:
-                    //v.setBackground(normalShape);	//go back to normal shape
-
-                default:
-                    break;
-            }
-            return true;
-        }
+    private void makeDlg() {
+        AlertDialog.Builder alert_confirm = new AlertDialog.Builder(MovingBallActivity.this);
+        alert_confirm.setMessage("실험을 완료하였습니다.").setCancelable(false);
+        AlertDialog alert = alert_confirm.create();
+        alert.show();
     }
 
     @Override

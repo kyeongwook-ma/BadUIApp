@@ -1,15 +1,16 @@
 package selab.dev.baduiapp.db;
 
-import selab.dev.baduiapp.BadUIApp;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import selab.dev.baduiapp.BadUIApp;
+
 public class DBHelper extends SQLiteOpenHelper  {
 
 	private static final String KEY_COLUMN = "_id";
-	private static final String DB_NAME = "BadUIDB";
+	public static final String DB_NAME = "BadUIDB";
 	private static DBHelper mInstance;
 
 	private static SQLiteDatabase mDb;

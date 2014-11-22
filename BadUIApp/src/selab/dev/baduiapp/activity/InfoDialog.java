@@ -15,7 +15,10 @@ public class InfoDialog extends AlertDialog {
     protected InfoDialog(Context context, String msg) {
         super(context);
         setMessage(msg);
+
     }
+
+
 
 
 }
