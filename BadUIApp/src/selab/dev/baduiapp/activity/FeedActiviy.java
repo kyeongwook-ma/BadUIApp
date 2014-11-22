@@ -40,17 +40,6 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
     protected void initView() {
         setContentView(R.layout.feed_activity);
 
-        pome = (ImageView)findViewById(R.id.iv_pome);
-        pome.setOnClickListener(this);
-        pome.setOnDragListener(new MyDragListener());
-
-        meat = (ImageView)findViewById(R.id.iv_feed);
-        meat.setTag("Meat");
-        meat.setOnClickListener(this);
-        meat.setOnLongClickListener(new DragClickListener());
-
-        button = (ImageView)findViewById(R.id.imageView);
-
         GestureDetector.SimpleOnGestureListener ls = new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
@@ -61,7 +50,43 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
             }
         };
 
+        pome = (ImageView)findViewById(R.id.iv_pome);
+        pome.setOnClickListener(this);
+        pome.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                switch (dragEvent.getAction()) {
 
+                    case DragEvent.ACTION_DRAG_STARTED:
+
+                        LogUtil.writeBMLog("Pome", TouchMode.DRAG);
+                        break;
+
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        break;
+
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        break;
+
+                    case DragEvent.ACTION_DROP:
+                        LogUtil.writeBMLog("Pome", TouchMode.DROP);
+                        break;
+
+                    case DragEvent.ACTION_DRAG_ENDED:
+
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+
+        meat = (ImageView)findViewById(R.id.iv_feed);
+        meat.setTag("Meat");
+        meat.setOnClickListener(this);
+        meat.setOnLongClickListener(new DragClickListener());
+
+        button = (ImageView)findViewById(R.id.imageView);
 
         button.setOnClickListener(this);
 
@@ -104,47 +129,6 @@ public class FeedActiviy extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    class MyDragListener implements View.OnDragListener {
-        // Drawable normalShape = getResources().getDrawable(R.drawable.normal_shape);
-        // Drawable targetShape = getResources().getDrawable(R.drawable.target_shape);
 
-        @Override
-        public boolean onDrag(View v, DragEvent event) {
-
-            // Handles each of the expected events
-            switch (event.getAction()) {
-
-                //signal for the start of a drag and drop operation.
-                case DragEvent.ACTION_DRAG_STARTED:
-                    // do nothing
-                    break;
-
-                //the drag point has entered the bounding box of the View
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    break;
-
-                //the user has moved the drag shadow outside the bounding box of the View
-                case DragEvent.ACTION_DRAG_EXITED:
-                    break;
-
-                //drag shadow has been released,the drag point is within the bounding box of the View
-                case DragEvent.ACTION_DROP:
-                    // if the view is the bottomlinear, we accept the drag item
-                    if(v == findViewById(R.id.iv_pome)) {
-                        startActivity(new Intent(FeedActiviy.this, MovingBallActivity.class));
-                        finish();
-                    }
-                    break;
-
-                //the drag and drop operation has concluded.
-                case DragEvent.ACTION_DRAG_ENDED:
-                    //v.setBackground(normalShape);	//go back to normal shape
-
-                default:
-                    break;
-            }
-            return true;
-        }
-    }
 
 }
