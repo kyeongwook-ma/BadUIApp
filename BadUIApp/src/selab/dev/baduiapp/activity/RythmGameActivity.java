@@ -31,34 +31,22 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //giveInst();
-
+        giveInst();
     }
 
     private void giveInst() {
         final Timer myTimer = new Timer();
         final Handler handler = new Handler();
         final Runnable myRunnable = new Runnable() {
-            int colors[] = new int[] { Color.CYAN, Color.GREEN, Color.MAGENTA, Color.YELLOW };
 
-            int valIdx = 0;
-
+            int countDown = 5;
             public void run() {
-                if(valIdx < rythmSeq.length) {
 
-                    String target = rythmSeq[valIdx++];
-                    tvInstruction.setText(target);
-
-                    int changedColor = colors[new Random().nextInt(colors.length)];
-
-                    tvInstruction.setTextColor(changedColor);
-
-                } else if(valIdx == rythmSeq.length) {
+                if(countDown == 0) {
                     startActivity(new Intent(RythmGameActivity.this, FeedActiviy.class));
-
                     finish();
-                    myTimer.cancel();
-
+                } else {
+                    tvInstruction.setText(String.valueOf(--countDown) + " 초 후 실험이 종료됩니다.");
                 }
             }
         };
@@ -66,7 +54,7 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
         myTimer.schedule(new TimerTask() {
             @Override
             public void run() { handler.post(myRunnable);}
-        }, 1000, 1000);
+        }, 5000, 1000);
     }
 
     private void changeTargetColor(String target, int color) {

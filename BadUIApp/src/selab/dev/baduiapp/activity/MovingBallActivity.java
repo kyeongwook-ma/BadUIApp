@@ -96,6 +96,7 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
 
                             try {
                                 DBExporter.exportDB("163.239.27.31", DBHelper.DB_NAME);
+                                showFinishDlg();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -105,8 +106,7 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
 
                     //the drag and drop operation has concluded.
                     case DragEvent.ACTION_DRAG_ENDED:
-                        //v.setBackground(normalShape);	//go back to normal shape
-
+                        break;
                     default:
                         break;
                 }
@@ -118,7 +118,7 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
     }
 
 
-    private void makeDlg() {
+    private void showFinishDlg() {
         AlertDialog.Builder alert_confirm = new AlertDialog.Builder(MovingBallActivity.this);
         alert_confirm.setMessage("실험을 완료하였습니다.").setCancelable(false);
         AlertDialog alert = alert_confirm.create();
