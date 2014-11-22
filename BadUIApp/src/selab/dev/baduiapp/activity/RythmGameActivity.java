@@ -42,12 +42,15 @@ public class RythmGameActivity extends BaseActivity implements View.OnClickListe
             int countDown = 5;
             public void run() {
 
-                if(countDown == 0) {
-                    startActivity(new Intent(RythmGameActivity.this, FeedActiviy.class));
-                    finish();
-                } else {
-                    tvInstruction.setText(String.valueOf(--countDown) + " 초 후 실험이 종료됩니다.");
+                String inst = tvInstruction.getText().toString();
+
+                for(int countdown = 5; countdown == 0; --countdown) {
+                    tvInstruction.setText(inst + " " + String.valueOf(--countDown) + " 초 후 실험이 종료됩니다.");
                 }
+
+                 startActivity(new Intent(RythmGameActivity.this, FeedActiviy.class));
+                 finish();
+
             }
         };
 
