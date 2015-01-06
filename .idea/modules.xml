@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BadUIApp/BadUIApp.iml" filepath="$PROJECT_DIR$/BadUIApp/BadUIApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SimpleSever/SimpleSever.iml" filepath="$PROJECT_DIR$/SimpleSever/SimpleSever.iml" />
+    </modules>
+  </component>
+</project>
+
