@@ -11,10 +11,15 @@ def time_conversion(line):
     return line[line.find("[")+1:line.find("]")]
 
 def write_bm(conn, bm_dict):
-    time = bm_dict["time"]
-    x = bm_dict["x"]
-    y = bm_dict["y"]
-    conn.execute('INSERT INTO BMTable (time_stamp,x,y) VALUES (?,?,?)',time,x,y)
+    
+    bm_cur = (
+
+    (bm_dict["time"], bm_dict["x"], bm_dict["y"])
+
+    )
+ 
+    conn.execute('INSERT INTO BMTable (time_stamp,x,y) VALUES (?,?,?)',bm_cur)
+    conn.commit()
 
 def main():
     file_path = sys.argv[1]
