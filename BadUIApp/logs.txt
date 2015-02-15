@@ -1,0 +1,24 @@
+add device 1: /dev/input/event10
+  name:     "sec_navigation"
+could not get driver version for /dev/input/mouse0, Not a typewriter
+add device 2: /dev/input/event0
+  name:     "max77803-muic"
+add device 3: /dev/input/event1
+  name:     "sec_touchscreen"
+add device 4: /dev/input/event7
+  name:     "gpio-keys"
+add device 5: /dev/input/event9
+  name:     "Headset"
+add device 6: /dev/input/event8
+  name:     "sec_touchkey"
+add device 7: /dev/input/event6
+  name:     "light_sensor"
+add device 8: /dev/input/event5
+  name:     "magnetic_sensor"
+add device 9: /dev/input/event4
+  name:     "gyro_sensor"
+add device 10: /dev/input/event3
+  name:     "accelerometer_sensor"
+add device 11: /dev/input/event2
+  name:     "sii8240_rcp"
+could not get driver version for /dev/input/mice, Not a typewriter

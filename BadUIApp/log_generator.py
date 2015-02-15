@@ -1,18 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import os, sys, log_extractor
+import subprocess, signal,os
 
-file_name = "logs.txt"
+file_name = "device_logs.txt"
 
 def find_device():
-    def generate_logs():
-        os.popen3("adb shell getevent -l > " + file_name)
-    generate_logs()
+  
+    p = subprocess.Popen("adb shell getevent -l > " + file_name, stdout=subprocess.PIPE, shell=True)
 
     device_logs = open(file_name, "r").readlines()
  
-    os.popen3("rm " + file_name)
+    os.kill(p.pid, signal.SIGINT)
 
     touch_device_line = ""
 
@@ -25,7 +24,7 @@ def find_device():
     return device_num
 
 def main():
-    device_num = log_extractor.find_device()
-    os.popen3("adb shell getevent | grep event " + str(device_num))
+    device_num = find_device()
+    subprocess.Popen("adb shell getevent | grep event" + str(device_num) + " > touch_logs.txt", shell=True)
 
 main()
