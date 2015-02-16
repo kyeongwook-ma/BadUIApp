@@ -42,10 +42,8 @@ def pull_trace():
 def main():
     
     if len(sys.argv) < 2:
-        print('Usage : python trace_parser.py "keyword" result.txt ')
+        print('Usage : python trace_parser.py "keyword" ')
         sys.exit(1)
-
-    out = open(sys.argv[3], "w")
     
     pid = get_pid()
     start_recording(pid)
@@ -56,7 +54,7 @@ def main():
         stop_recording(pid)
         pull_trace()
         for line in lines[24:]:
-            info_dict = parse(line, sys.argv[2])
+            info_dict = parse(line, sys.argv[1])
 
             if info_dict is not None:
                 write_bm(str(info_dict))
