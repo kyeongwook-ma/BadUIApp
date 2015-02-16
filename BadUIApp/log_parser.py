@@ -12,16 +12,17 @@ def time_conversion(line):
 
 def write_bm(conn, bm_dict):
     
-    bm_cur = (
-
-    (bm_dict["time"], bm_dict["x"], bm_dict["y"])
-
-    )
+    bm_cur = ((bm_dict["time"], bm_dict["x"], bm_dict["y"]))
  
     conn.execute('INSERT INTO BMTable (time_stamp,x,y) VALUES (?,?,?)',bm_cur)
     conn.commit()
 
 def main():
+    
+    if len(sys.argv) < 2:
+        print "Usage python log_parser.py logfile dbfile"
+        sys.exit(1)
+    
     file_path = sys.argv[1]
     logs = open(file_path).read().splitlines()
 

@@ -7,7 +7,7 @@ file_name = "device_logs.txt"
 
 def find_device():
   
-    p = subprocess.Popen("adb shell getevent -l > " + file_name, stdout=subprocess.PIPE, shell=True)
+    p = subprocess.Popen("adb shell getevent -l > " + file_name, shell=True)
 
     device_logs = open(file_name, "r").readlines()
  
