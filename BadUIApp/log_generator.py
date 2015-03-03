@@ -23,8 +23,7 @@ def find_device():
     device_num = touch_device_line[len(touch_device_line)-3:]
     return device_num
 
-def main():
+def generate_touch_log():
     device_num = find_device()
     subprocess.Popen("adb shell getevent | grep event" + str(device_num) + " > touch_logs.txt", shell=True)
 
-main()

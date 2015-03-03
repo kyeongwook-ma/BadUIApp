@@ -1,13 +1,13 @@
 # -*- coding:utf-8 -*-
 import sys, os, json, subprocess, re, signal
+import datetime
 
+trace_name = str(datetime.datetime.now()).replace(" ", "") + ".trace" 
 
 def write_bm(conn, bm_dict):
-
     bm_cur = ((bm_dict["touch_class"], bm_dict["touch_mode"]))
     conn.execute("INSERT INTO BMTable (touch_class, touch_mode) values (?, ?)", bm_cur)
     conn.commit()
-
 
 def parse(line, keyword):
     fragments = line.split("\t")
@@ -31,33 +31,44 @@ def get_pid(keyword):
             return extract_pid(ps)
 
 def start_recording(pid):
-    subprocess.Popen("adb shell am start " + pid + " /sdcard/method.trace")
+    print "start recording"
+    return os.system("adb shell am profile " + str(pid) + " start /sdcard/" + trace_name)
 
 def stop_recording(pid):
-    subprocess.Popen("adb shell am stop " + pid)
+    return os.system("adb shell am profile " + str(pid) + " stop")
 
 def pull_trace():
-    subprocess.Popen("adb pull /sdcard/method.trace " + os.getcwd())
+    return os.system("adb pull /sdcard/" + trace_name)
 
 def main():
     
-    if len(sys.argv) < 2:
-        print('Usage : python trace_parser.py "keyword" ')
-        sys.exit(1)
-    
-    pid = get_pid()
-    start_recording(pid)
-    
-    signal.signal(signal.SIGINT, signal_hadler)
- 
     def signal_hadler(signal, frame):
-        stop_recording(pid)
-        pull_trace()
-        for line in lines[24:]:
+        mutex = -1 
+
+        while mutex != 0:
+            stop_recording(pid)
+            mutex = pull_trace()
+
+        trace_file = open(trace_name, "r")
+
+        for line in trace_file.readline():
             info_dict = parse(line, sys.argv[1])
 
             if info_dict is not None:
                 write_bm(str(info_dict))
+
+        sys.exit()
+
+    if len(sys.argv) < 2:
+        print('Usage : python trace_parser.py "keyword" ')
+        sys.exit(1)
+    
+    pid = get_pid(sys.argv[1])
+    start_recording(pid)
+    signal.signal(signal.SIGINT, signal_hadler)
+    
+    while(True):
+        pass
 
 if __name__ == "__main__":
     main()
