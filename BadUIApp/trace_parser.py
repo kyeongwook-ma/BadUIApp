@@ -43,11 +43,12 @@ def pull_trace():
 def main():
     
     def signal_hadler(signal, frame):
-        mutex = -1 
 
-        while mutex != 0:
-            stop_recording(pid)
-            mutex = pull_trace()
+        stop_recording(pid)
+        
+        time.sleep(3)
+
+        pull_trace()
 
         trace_file = open(trace_name, "r")
 
