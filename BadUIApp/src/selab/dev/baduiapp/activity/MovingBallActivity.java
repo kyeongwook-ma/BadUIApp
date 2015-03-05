@@ -94,12 +94,6 @@ public class MovingBallActivity extends BaseActivity implements View.OnClickList
 
                             LogUtil.writeBMLog("Ball", TouchMode.DROP);
 
-                            try {
-                                DBExporter.exportDB("163.239.27.31", DBHelper.DB_NAME);
-                                showFinishDlg();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
 
                         }
                         break;
